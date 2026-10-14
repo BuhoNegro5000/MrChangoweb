@@ -1,0 +1,344 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-stage-black: #080a07;
+  --color-deep-green: #102419;
+  --color-gold: #dab44a;
+  --color-orange: #c96832;
+  --color-ivory: #f1eadd;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  background-color: #080a07;
+  color: #f1eadd;
+  font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  selection-background-color: #dab44a;
+  selection-color: #080a07;
+}
+
+::selection {
+  background: #dab44a;
+  color: #080a07;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #080a07;
+}
+::-webkit-scrollbar-thumb {
+  background: #183827;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #dab44a;
+}
+
+/* Typography Headings */
+h1, h2, h3, .font-display {
+  font-family: var(--font-display), "Impact", "Oswald", "Trebuchet MS", sans-serif;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* Text glow & subtle roots texture */
+.text-glow-gold {
+  text-shadow: 0 0 25px rgba(218, 180, 74, 0.4);
+}
+
+.text-glow-orange {
+  text-shadow: 0 0 25px rgba(201, 104, 50, 0.4);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Animación de ondeado de la bandera Rasta en el cursor */
+@keyframes flagWaveAnimation {
+  0%, 100% {
+    transform: scaleY(1) skewY(0deg);
+  }
+  25% {
+    transform: scaleY(1.05) skewY(-3deg) translateY(-0.5px);
+  }
+  50% {
+    transform: scaleY(0.96) skewY(2.5deg) translateY(0.5px);
+  }
+  75% {
+    transform: scaleY(1.03) skewY(-2deg) translateY(-0.3px);
+  }
+}
+
+.animate-flag-wave {
+  animation: flagWaveAnimation 2.2s ease-in-out infinite;
+  transform-origin: 3px 12px;
+}
+
+/* Ocultar el cursor estándar del sistema en pantallas de escritorio con ratón para lucir el cursor Rasta personalizado */
+@media (pointer: fine) {
+  body, a, button, input, select, textarea, [role="button"], label, .cursor-pointer, .cursor-grab {
+    cursor: none !important;
+  }
+}
+
+/* ======================================================== */
+/* MODO CLARO (Pergamino Caribeño / Marfil Editorial)       */
+/* ======================================================== */
+html.light {
+  color-scheme: light;
+}
+
+html.light body {
+  background-color: #FAF7F2 !important;
+  color: #111813 !important;
+}
+
+/* Fondos de sección y canvas */
+html.light .bg-stage-950 {
+  background-color: #FAF7F2 !important;
+}
+
+html.light .bg-stage-950\/95,
+html.light .bg-stage-950\/90,
+html.light .bg-stage-950\/80,
+html.light .bg-stage-950\/70 {
+  background-color: rgba(250, 247, 242, 0.96) !important;
+}
+
+/* Tarjetas y casillas principales — Blanco editorial puro y nítido */
+html.light .bg-stage-900 {
+  background-color: #FFFFFF !important;
+  border-color: #E5DDD0 !important;
+  color: #111813 !important;
+  box-shadow: 0 4px 20px -2px rgba(28, 24, 18, 0.05), 0 2px 6px -1px rgba(28, 24, 18, 0.03);
+}
+
+html.light .bg-stage-900\/95,
+html.light .bg-stage-900\/90,
+html.light .bg-stage-900\/80 {
+  background-color: #FFFFFF !important;
+  border-color: #E5DDD0 !important;
+  color: #111813 !important;
+  box-shadow: 0 4px 20px -2px rgba(28, 24, 18, 0.05);
+}
+
+html.light .bg-stage-900\/60,
+html.light .bg-stage-900\/40,
+html.light .bg-stage-900\/30 {
+  background-color: #F8F4EC !important;
+  border-color: #E5DDD0 !important;
+  color: #111813 !important;
+}
+
+/* Casillas interiores / Wells */
+html.light .bg-stage-850 {
+  background-color: #F6F1E7 !important;
+  border-color: #E5DDD0 !important;
+  color: #111813 !important;
+}
+
+html.light .bg-stage-850\/80,
+html.light .bg-stage-850\/60,
+html.light .bg-stage-850\/40 {
+  background-color: #F6F1E7 !important;
+  border-color: #E5DDD0 !important;
+}
+
+html.light .bg-stage-800 {
+  background-color: #EFE8DC !important;
+  border-color: #DFD5C4 !important;
+  color: #111813 !important;
+}
+
+/* Tipografía de lectura de alto contraste */
+html.light .text-reggae-ivory {
+  color: #111813 !important;
+}
+
+html.light .text-reggae-ivory\/90,
+html.light .text-reggae-ivory\/80,
+html.light .text-reggae-ivory\/75,
+html.light .text-reggae-ivory\/70 {
+  color: #28362D !important;
+}
+
+html.light .text-reggae-ivory\/60,
+html.light .text-reggae-ivory\/50,
+html.light .text-reggae-ivory\/40 {
+  color: #526357 !important;
+}
+
+/* Acentos cromáticos adaptados a fondo claro para cumplir accesibilidad WCAG AA */
+html.light .text-reggae-gold,
+html.light .text-reggae-gold\/90,
+html.light .text-reggae-gold\/80 {
+  color: #875D06 !important;
+}
+
+html.light .text-reggae-orange {
+  color: #B84E18 !important;
+}
+
+html.light .text-green-400 {
+  color: #15803D !important;
+}
+
+html.light .text-red-400 {
+  color: #DC2626 !important;
+}
+
+/* Desactivar resplandor oscuro sobre texto oscuro */
+html.light .text-glow-gold,
+html.light .text-glow-orange {
+  text-shadow: none !important;
+}
+
+/* Bordes limpios y sutiles */
+html.light .border-stage-800,
+html.light .border-stage-800\/80,
+html.light .border-stage-700,
+html.light .border-reggae-green-deep\/60,
+html.light .border-reggae-green-deep\/80,
+html.light .border-reggae-green-deep\/90 {
+  border-color: #E5DDD0 !important;
+}
+
+/* Header de navegación en modo claro */
+html.light header {
+  background-color: rgba(250, 247, 242, 0.95) !important;
+  border-bottom-color: #E5DDD0 !important;
+  box-shadow: 0 2px 12px -2px rgba(28, 24, 18, 0.04) !important;
+}
+
+/* Overlays en video Hero adaptados a luz de día */
+html.light .hero-video-overlay-1 {
+  background: linear-gradient(to top, #FAF7F2 0%, rgba(250, 247, 242, 0.85) 60%, rgba(250, 247, 242, 0.55) 100%) !important;
+}
+
+html.light .hero-video-overlay-2 {
+  background: linear-gradient(to right, rgba(250, 247, 242, 0.92) 0%, transparent 50%, rgba(250, 247, 242, 0.92) 100%) !important;
+}
+
+html.light .hero-video-overlay-3 {
+  background: radial-gradient(circle at center, rgba(218, 180, 74, 0.12) 0%, transparent 70%) !important;
+}
+
+/* Texto preservado en blanco sobre fondos oscuros o multimedia */
+html.light .keep-white-on-media,
+html.light .keep-white-on-media * {
+  color: #FFFFFF !important;
+}
+
+html.light .keep-gold-on-media {
+  color: #DAB44A !important;
+}
+
+/* ======================================================== */
+/* Reproductor Musical (AudioPlayerBar) en Modo Claro        */
+/* ======================================================== */
+html.light .audio-player-modal {
+  background-color: rgba(255, 255, 255, 0.98) !important;
+  border-color: #E5DDD0 !important;
+  color: #111813 !important;
+  box-shadow: 0 10px 35px -5px rgba(28, 24, 18, 0.12), 0 4px 12px -2px rgba(28, 24, 18, 0.08) !important;
+}
+
+html.light .audio-player-pill {
+  background-color: #FFFFFF !important;
+  border-color: rgba(218, 180, 74, 0.6) !important;
+  color: #875D06 !important;
+}
+
+html.light .audio-player-header {
+  border-color: #E5DDD0 !important;
+}
+
+html.light .audio-player-close {
+  color: #526357 !important;
+}
+html.light .audio-player-close:hover {
+  color: #875D06 !important;
+}
+
+html.light .audio-player-title {
+  color: #111813 !important;
+}
+
+html.light .audio-player-artist {
+  color: #875D06 !important;
+}
+
+html.light .audio-player-progress {
+  color: #526357 !important;
+}
+
+html.light .audio-player-track {
+  background-color: #E5DDD0 !important;
+}
+
+html.light .audio-player-btn {
+  color: #28362D !important;
+}
+html.light .audio-player-btn:hover {
+  background-color: #F6F1E7 !important;
+  color: #875D06 !important;
+}
+
+html.light .audio-player-vol {
+  color: #526357 !important;
+}
+html.light .audio-player-vol:hover {
+  color: #875D06 !important;
+}
+
+html.light .audio-player-slider {
+  accent-color: #875D06 !important;
+}
+
+html.light .audio-player-footer {
+  border-color: #E5DDD0 !important;
+}
+
+html.light .audio-player-origin {
+  color: #788A7E !important;
+}
+
+html.light .audio-player-spotify {
+  background-color: #E8F8EE !important;
+  color: #127D37 !important;
+  border-color: rgba(29, 185, 84, 0.4) !important;
+}
+html.light .audio-player-spotify:hover {
+  background-color: #d4f2de !important;
+  color: #0b5c26 !important;
+}
+
+html.light .audio-player-youtube {
+  background-color: #FEECEC !important;
+  color: #CC0000 !important;
+  border-color: rgba(255, 0, 0, 0.4) !important;
+}
+html.light .audio-player-youtube:hover {
+  background-color: #fed7d7 !important;
+  color: #990000 !important;
+}
+
+
+
