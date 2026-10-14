@@ -84,7 +84,7 @@ export default function HomePage() {
 
 
           {/* 3D Model Logo */}
-          <div className="relative w-full max-w-[460px] mb-4 flex items-center justify-center">
+          <div className="relative w-full max-w-[min(460px,calc(100vw-2rem))] mb-4 flex items-center justify-center overflow-hidden">
             <Logo3D size={440} className="w-full" />
           </div>
 

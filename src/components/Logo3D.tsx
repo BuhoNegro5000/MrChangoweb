@@ -362,11 +362,11 @@ export default function Logo3D({ className = "", size = 380 }: Logo3DProps) {
     };
   }, [mounted, size]);
 
-  if (!mounted) {
+  if (!mounted || !webglAvailable) {
     return (
       <div
         className={`relative flex flex-col items-center justify-center select-none ${className}`}
-        style={{ width: size, height: size, maxWidth: "100%" }}
+        style={{ width: `min(${size}px, calc(100vw - 2rem))`, height: `min(${size}px, calc(100vw - 2rem))`, maxWidth: "100%", aspectRatio: "1" }}
       >
         <div className="relative w-full h-full flex items-center justify-center">
           <Image
@@ -386,7 +386,7 @@ export default function Logo3D({ className = "", size = 380 }: Logo3DProps) {
     <div className={`relative flex flex-col items-center justify-center select-none ${className}`}>
       <div
         ref={mountRef}
-        style={{ width: size, height: size, maxWidth: "100%" }}
+        style={{ width: `min(${size}px, calc(100vw - 2rem))`, height: `min(${size}px, calc(100vw - 2rem))`, maxWidth: "100%", aspectRatio: "1" }}
         className={`relative transition-transform duration-200 ${
           isInteracting ? "cursor-grabbing scale-[1.02]" : "cursor-grab"
         }`}

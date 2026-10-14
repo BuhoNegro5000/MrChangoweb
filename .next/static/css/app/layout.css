@@ -1007,6 +1007,9 @@ video {
 .max-w-xl {
   max-width: 36rem;
 }
+.max-w-\[min\(460px\2c calc\(100vw-2rem\)\)\] {
+  max-width: min(460px, calc(100vw - 2rem));
+}
 .flex-1 {
   flex: 1 1 0%;
 }
