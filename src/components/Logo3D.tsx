@@ -23,6 +23,7 @@ export default function Logo3D({ className = "", size = 380 }: Logo3DProps) {
   const mountRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
   const [isInteracting, setIsInteracting] = useState(false);
+  const [webglAvailable, setWebglAvailable] = useState(true);
 
   useEffect(() => {
     setMounted(true);
@@ -34,13 +35,23 @@ export default function Logo3D({ className = "", size = 380 }: Logo3DProps) {
     if (!mount) return;
 
     // ── 1. RENDERER ──────────────────────────────────────────────
-    const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: true,
-      powerPreference: "high-performance",
-    });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(size, size);
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+        powerPreference: "high-performance",
+      });
+    } catch {
+      setWebglAvailable(false);
+      return;
+    }
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    renderer.setSize(size, size, false);
+    renderer.domElement.style.width = "100%";
+    renderer.domElement.style.height = "100%";
+    renderer.domElement.style.maxWidth = "100%";
+    renderer.domElement.style.display = "block";
     renderer.setClearColor(0x000000, 0); // Transparente
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.3;
@@ -351,11 +362,11 @@ export default function Logo3D({ className = "", size = 380 }: Logo3DProps) {
     };
   }, [mounted, size]);
 
-  if (!mounted) {
+  if (!mounted || !webglAvailable) {
     return (
       <div
         className={`relative flex flex-col items-center justify-center select-none ${className}`}
-        style={{ width: size, height: size, maxWidth: "100%" }}
+        style={{ width: `min(${size}px, calc(100vw - 2rem))`, height: `min(${size}px, calc(100vw - 2rem))`, maxWidth: "100%", aspectRatio: "1" }}
       >
         <div className="relative w-full h-full flex items-center justify-center">
           <Image
@@ -375,7 +386,7 @@ export default function Logo3D({ className = "", size = 380 }: Logo3DProps) {
     <div className={`relative flex flex-col items-center justify-center select-none ${className}`}>
       <div
         ref={mountRef}
-        style={{ width: size, height: size, maxWidth: "100%" }}
+        style={{ width: `min(${size}px, calc(100vw - 2rem))`, height: `min(${size}px, calc(100vw - 2rem))`, maxWidth: "100%", aspectRatio: "1" }}
         className={`relative transition-transform duration-200 ${
           isInteracting ? "cursor-grabbing scale-[1.02]" : "cursor-grab"
         }`}
