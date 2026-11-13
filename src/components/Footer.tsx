@@ -46,13 +46,13 @@ export const Footer = () => {
           {/* Col 1: Identity & Motto */}
           <div className="lg:col-span-4 flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <div className="relative w-14 h-12 overflow-hidden rounded bg-white dark:bg-stage-900 border border-stone-200 dark:border-reggae-gold/30 p-1 shadow-sm">
+              <div className="relative w-16 h-12">
                 <Image
-                  src="/logonegro.jpeg"
+                  src="/optimized/logo_header.png"
                   alt="Logotipo Mr. Chango"
                   fill
                   sizes="64px"
-                  className="object-contain"
+                  className="object-contain drop-shadow-[0_0_1px_rgba(0,0,0,0.7)] dark:drop-shadow-none"
                 />
               </div>
               <div>
@@ -136,7 +136,7 @@ export const Footer = () => {
               >
                 <Mail className="w-4 h-4 text-[#875D06] dark:text-reggae-gold shrink-0 mt-0.5" />
                 <div>
-                  <span className="block text-xs text-stone-500 dark:text-reggae-ivory/50">Artístico:</span>
+                  <span className="block text-xs text-stone-600 dark:text-reggae-ivory/50">Artístico:</span>
                   <span>{CHANGO_DATA.contact.artisticEmail}</span>
                 </div>
               </a>
@@ -147,12 +147,12 @@ export const Footer = () => {
               >
                 <Mail className="w-4 h-4 text-[#B84E18] dark:text-reggae-orange shrink-0 mt-0.5" />
                 <div>
-                  <span className="block text-xs text-stone-500 dark:text-reggae-ivory/50">Producción:</span>
+                  <span className="block text-xs text-stone-600 dark:text-reggae-ivory/50">Producción:</span>
                   <span>{CHANGO_DATA.contact.productionEmail}</span>
                 </div>
               </a>
 
-              <div className="pt-2 text-xs text-stone-500 dark:text-reggae-ivory/50 font-mono">
+              <div className="pt-2 text-xs text-stone-600 dark:text-reggae-ivory/50 font-mono">
                 Responsable: {CHANGO_DATA.contact.bookingResponsible}
               </div>
             </div>
@@ -174,7 +174,7 @@ export const Footer = () => {
               <FileDown className="w-4 h-4" />
               <span>Dossier Oficial</span>
             </a>
-            <span className="text-[10px] text-stone-500 dark:text-reggae-ivory/40 font-mono text-center">
+            <span className="text-[10px] text-stone-600 dark:text-reggae-ivory/40 font-mono text-center">
               Soul Entertainment (PDF • 38.1 MB)
             </span>
           </div>
@@ -205,7 +205,7 @@ export const Footer = () => {
         </div>
 
         {/* Bottom Credits Bar */}
-        <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500 dark:text-reggae-ivory/50">
+        <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-600 dark:text-reggae-ivory/50">
           <div>
             © {currentYear} Mr. Chango Reggae Mexicano. Todos los derechos reservados.
           </div>

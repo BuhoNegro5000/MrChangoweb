@@ -739,6 +739,9 @@ video {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
 }
+.mb-0 {
+  margin-bottom: 0px;
+}
 .mb-1 {
   margin-bottom: 0.25rem;
 }
@@ -808,9 +811,6 @@ video {
 .mt-8 {
   margin-top: 2rem;
 }
-.mb-0 {
-  margin-bottom: 0px;
-}
 .line-clamp-2 {
   overflow: hidden;
   display: -webkit-box;
@@ -871,8 +871,8 @@ video {
 .h-1\.5 {
   height: 0.375rem;
 }
-.h-10 {
-  height: 2.5rem;
+.h-11 {
+  height: 2.75rem;
 }
 .h-12 {
   height: 3rem;
@@ -939,9 +939,6 @@ video {
 }
 .w-1 {
   width: 0.25rem;
-}
-.w-12 {
-  width: 3rem;
 }
 .w-14 {
   width: 3.5rem;
@@ -1301,9 +1298,6 @@ video {
   --tw-border-opacity: 1;
   border-color: rgb(218 180 74 / var(--tw-border-opacity, 1));
 }
-.border-reggae-gold\/20 {
-  border-color: rgb(218 180 74 / 0.2);
-}
 .border-reggae-gold\/30 {
   border-color: rgb(218 180 74 / 0.3);
 }
@@ -1456,9 +1450,6 @@ video {
 .bg-stage-950 {
   --tw-bg-opacity: 1;
   background-color: rgb(4 5 4 / var(--tw-bg-opacity, 1));
-}
-.bg-stage-950\/80 {
-  background-color: rgb(4 5 4 / 0.8);
 }
 .bg-stage-950\/95 {
   background-color: rgb(4 5 4 / 0.95);
@@ -1618,9 +1609,6 @@ video {
 .object-top {
   -o-object-position: top;
      object-position: top;
-}
-.p-0\.5 {
-  padding: 0.125rem;
 }
 .p-1 {
   padding: 0.25rem;
@@ -1804,10 +1792,6 @@ video {
   font-size: 1.875rem;
   line-height: 2.25rem;
 }
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
 .text-6xl {
   font-size: 3.75rem;
   line-height: 1;
@@ -1852,6 +1836,9 @@ video {
 }
 .font-semibold {
   font-weight: 600;
+}
+.font-normal {
+  font-weight: 400;
 }
 .uppercase {
   text-transform: uppercase;
@@ -2021,10 +2008,6 @@ video {
   --tw-text-opacity: 1;
   color: rgb(245 245 244 / var(--tw-text-opacity, 1));
 }
-.text-stone-500 {
-  --tw-text-opacity: 1;
-  color: rgb(120 113 108 / var(--tw-text-opacity, 1));
-}
 .text-stone-600 {
   --tw-text-opacity: 1;
   color: rgb(87 83 78 / var(--tw-text-opacity, 1));
@@ -2139,6 +2122,10 @@ video {
 }
 .blur-3xl {
   --tw-blur: blur(64px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+.drop-shadow-\[0_0_1px_rgba\(0\2c 0\2c 0\2c 0\.7\)\] {
+  --tw-drop-shadow: drop-shadow(0 0 1px rgba(0,0,0,0.7));
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 .drop-shadow-\[0_3px_8px_rgba\(0\2c 0\2c 0\2c 0\.85\)\] {
@@ -2311,9 +2298,19 @@ h1, h2, h3, .font-display {
   transform-origin: 3px 12px;
 }
 
-/* Ocultar el cursor estándar del sistema en pantallas de escritorio con ratón para lucir el cursor Rasta personalizado */
+/* Oculta el cursor nativo solo después de que la bandera Rasta ya está activa. */
 @media (pointer: fine) {
-  body, a, button, input, select, textarea, [role="button"], label, .cursor-pointer, .cursor-grab {
+  html.rasta-cursor-active,
+  html.rasta-cursor-active body,
+  html.rasta-cursor-active a,
+  html.rasta-cursor-active button,
+  html.rasta-cursor-active input,
+  html.rasta-cursor-active select,
+  html.rasta-cursor-active textarea,
+  html.rasta-cursor-active [role="button"],
+  html.rasta-cursor-active label,
+  html.rasta-cursor-active .cursor-pointer,
+  html.rasta-cursor-active .cursor-grab {
     cursor: none !important;
   }
 }
@@ -2393,6 +2390,7 @@ html.light .text-reggae-ivory {
 }
 
 html.light .text-reggae-ivory\/90,
+html.light .text-reggae-ivory\/85,
 html.light .text-reggae-ivory\/80,
 html.light .text-reggae-ivory\/75,
 html.light .text-reggae-ivory\/70 {
@@ -2408,7 +2406,8 @@ html.light .text-reggae-ivory\/40 {
 /* Acentos cromáticos adaptados a fondo claro para cumplir accesibilidad WCAG AA */
 html.light .text-reggae-gold,
 html.light .text-reggae-gold\/90,
-html.light .text-reggae-gold\/80 {
+html.light .text-reggae-gold\/80,
+html.light .text-reggae-gold\/60 {
   color: #875D06 !important;
 }
 
@@ -2448,16 +2447,43 @@ html.light header {
 }
 
 /* Overlays en video Hero adaptados a luz de día */
+html.light .hero-video {
+  opacity: 0.95 !important;
+  animation: none !important;
+}
+
+/* Solo un desvanecido inferior hacia la siguiente sección */
 html.light .hero-video-overlay-1 {
-  background: linear-gradient(to top, #FAF7F2 0%, rgba(250, 247, 242, 0.85) 60%, rgba(250, 247, 242, 0.55) 100%) !important;
+  background: linear-gradient(to top, #FAF7F2 0%, rgba(250, 247, 242, 0) 30%) !important;
 }
 
 html.light .hero-video-overlay-2 {
-  background: linear-gradient(to right, rgba(250, 247, 242, 0.92) 0%, transparent 50%, rgba(250, 247, 242, 0.92) 100%) !important;
+  background: none !important;
 }
 
+/* Difuminado crema únicamente detrás del bloque de texto para conservar la legibilidad */
 html.light .hero-video-overlay-3 {
-  background: radial-gradient(circle at center, rgba(218, 180, 74, 0.12) 0%, transparent 70%) !important;
+  background: radial-gradient(ellipse 52% 62% at 50% 56%, rgba(250, 247, 242, 0.8) 0%, rgba(250, 247, 242, 0.55) 55%, rgba(250, 247, 242, 0) 100%) !important;
+}
+
+/* Secciones con fondo oscuro fijo: en modo claro pasan a marfil alternado para que el texto oscuro tenga contraste */
+html.light section#manifiesto,
+html.light section#envivo,
+html.light section#rider {
+  background-color: #F3EDE0 !important;
+}
+
+html.light section#banda,
+html.light section#galeria {
+  background-color: #FAF7F2 !important;
+}
+
+html.light section#musica {
+  background-color: #F7F2E8 !important;
+}
+
+html.light section#contacto {
+  background-color: #FAF7F2 !important;
 }
 
 /* Texto preservado en blanco sobre fondos oscuros o multimedia */
@@ -2537,7 +2563,7 @@ html.light .audio-player-footer {
 }
 
 html.light .audio-player-origin {
-  color: #788A7E !important;
+  color: #526357 !important;
 }
 
 html.light .audio-player-spotify {
@@ -3227,6 +3253,10 @@ html.light .song-cover-image {
   --tw-gradient-stops: var(--tw-gradient-from), rgb(4 5 4 / 0.4) var(--tw-gradient-via-position), var(--tw-gradient-to);
 }
 
+.dark\:font-light:is(.dark *) {
+  font-weight: 300;
+}
+
 .dark\:text-\[\#E5E8E4\]:is(.dark *) {
   --tw-text-opacity: 1;
   color: rgb(229 232 228 / var(--tw-text-opacity, 1));
@@ -3343,6 +3373,11 @@ html.light .song-cover-image {
   --tw-ring-color: rgb(218 180 74 / 0.2);
 }
 
+.dark\:drop-shadow-none:is(.dark *) {
+  --tw-drop-shadow: drop-shadow(0 0 #0000);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
 .dark\:hover\:border-reggae-gold\/40:hover:is(.dark *) {
   border-color: rgb(218 180 74 / 0.4);
 }
@@ -3437,10 +3472,6 @@ html.light .song-cover-image {
     margin-top: 2.5rem;
   }
 
-  .sm\:mt-6 {
-    margin-top: 1.5rem;
-  }
-
   .sm\:mt-4 {
     margin-top: 1rem;
   }
@@ -3457,8 +3488,8 @@ html.light .song-cover-image {
     aspect-ratio: 16/9;
   }
 
-  .sm\:h-11 {
-    height: 2.75rem;
+  .sm\:h-12 {
+    height: 3rem;
   }
 
   .sm\:h-\[72vh\] {
@@ -3469,8 +3500,8 @@ html.light .song-cover-image {
     min-height: 85vh;
   }
 
-  .sm\:w-14 {
-    width: 3.5rem;
+  .sm\:w-16 {
+    width: 4rem;
   }
 
   .sm\:w-\[22rem\] {
@@ -3569,11 +3600,6 @@ html.light .song-cover-image {
     line-height: 1;
   }
 
-  .sm\:text-6xl {
-    font-size: 3.75rem;
-    line-height: 1;
-  }
-
   .sm\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
@@ -3610,10 +3636,6 @@ html.light .song-cover-image {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .md\:grid-cols-5 {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-
   .md\:flex-row {
     flex-direction: row;
   }
@@ -3628,11 +3650,6 @@ html.light .song-cover-image {
 
   .md\:text-6xl {
     font-size: 3.75rem;
-    line-height: 1;
-  }
-
-  .md\:text-7xl {
-    font-size: 4.5rem;
     line-height: 1;
   }
 }
@@ -3698,11 +3715,6 @@ html.light .song-cover-image {
 
   .lg\:text-5xl {
     font-size: 3rem;
-    line-height: 1;
-  }
-
-  .lg\:text-8xl {
-    font-size: 6rem;
     line-height: 1;
   }
 }

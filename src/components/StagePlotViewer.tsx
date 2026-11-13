@@ -181,7 +181,7 @@ export const StagePlotViewer = () => {
                         <td className="py-3 px-4 font-bold text-[#875D06] dark:text-reggae-gold">{ch.ch}</td>
                         <td className="py-3 px-4 font-sans font-medium text-stone-900 dark:text-reggae-ivory">{ch.name}</td>
                         <td className="py-3 px-4 text-stone-700 dark:text-reggae-ivory/80">{ch.device}</td>
-                        <td className="py-3 px-4 text-stone-500 dark:text-reggae-ivory/60 font-sans">Línea directa sin efectos añadidos en tarima</td>
+                        <td className="py-3 px-4 text-stone-600 dark:text-reggae-ivory/60 font-sans">Línea directa sin efectos añadidos en tarima</td>
                       </tr>
                     ))}
                   </tbody>
