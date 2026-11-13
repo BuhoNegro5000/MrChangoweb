@@ -70,13 +70,13 @@ export const Navbar = () => {
             className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-reggae-gold rounded-lg p-1"
             aria-label="Mr. Chango - Inicio"
           >
-            <div className="relative w-12 h-10 sm:w-14 sm:h-11 overflow-hidden rounded bg-stage-950/80 border border-reggae-gold/20 p-0.5 transition-transform group-hover:scale-105">
+            <div className="relative w-14 h-11 sm:w-16 sm:h-12 transition-transform duration-200 group-hover:scale-105">
               <Image
-                src="/logonegro.jpeg"
+                src="/optimized/logo_header.png"
                 alt="Logotipo oficial Mr. Chango"
                 fill
-                sizes="56px"
-                className="object-contain"
+                sizes="64px"
+                className="object-contain drop-shadow-[0_0_1px_rgba(0,0,0,0.7)] dark:drop-shadow-none"
                 priority
               />
             </div>
