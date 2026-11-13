@@ -33,6 +33,8 @@ export default function HomePage() {
   const [lightboxItem, setLightboxItem] = useState<GalleryItem | LiveVideo | null>(null);
   const [lightboxType, setLightboxType] = useState<"image" | "video">("image");
   const [galleryCategory, setGalleryCategory] = useState<string>("Todos");
+  const [activeShowStage, setActiveShowStage] = useState(0);
+  const [activeShowFormat, setActiveShowFormat] = useState(0);
 
   const openImageLightbox = (item: GalleryItem) => {
     setLightboxItem(item);
@@ -74,7 +76,7 @@ export default function HomePage() {
             <source src="/bandatocando3.mp4" type="video/mp4" />
           </video>
           {/* Multi-layered cinematic gradient overlays */}
-          <div className="hero-video-overlay-1 absolute inset-0 bg-gradient-to-t from-stage-950 via-stage-950/70 to-stage-950/50" />
+          <div className="hero-video-overlay-1 absolute inset-0 bg-gradient-to-t from-stage-950/90 via-stage-950/40 to-stage-950/15" />
           <div className="hero-video-overlay-2 absolute inset-0 bg-gradient-to-r from-stage-950/90 via-transparent to-stage-950/90" />
           <div className="hero-video-overlay-3 absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,36,25,0.4)_0%,transparent_70%)]" />
         </div>
@@ -84,15 +86,11 @@ export default function HomePage() {
 
 
           {/* 3D Model Logo */}
-          <div className="relative w-full max-w-[min(460px,calc(100vw-2rem))] mb-4 flex items-center justify-center overflow-hidden">
+          <div className="relative w-full max-w-[min(460px,calc(100vw-2rem))] mb-0 flex items-center justify-center overflow-hidden">
             <Logo3D size={440} className="w-full" />
           </div>
 
-          <h1 className="font-display font-extrabold text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-stone-900 dark:text-reggae-ivory leading-none text-glow-gold">
-            {CHANGO_DATA.identity.headline}
-          </h1>
-
-          <p className="mt-4 sm:mt-6 text-lg sm:text-2xl font-light text-stone-700 dark:text-reggae-ivory/90 max-w-2xl leading-relaxed">
+          <p className="mt-2 sm:mt-4 text-lg sm:text-2xl font-light text-stone-700 dark:text-reggae-ivory/90 max-w-2xl leading-relaxed">
             {CHANGO_DATA.identity.tagline}
           </p>
 
@@ -105,7 +103,7 @@ export default function HomePage() {
           <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
             <a
               href="#contacto"
-              className="w-full sm:w-auto flex items-center justify-center gap-2.5 bg-gradient-to-r from-reggae-gold to-reggae-orange hover:from-reggae-gold-light hover:to-reggae-orange-warm text-stage-950 font-display font-bold text-sm sm:text-base px-8 py-4 rounded-xl shadow-2xl hover:shadow-reggae-gold/30 hover:scale-105 active:scale-95 transition-all"
+              className="w-full sm:w-auto flex items-center justify-center gap-2.5 bg-[#F2C230] hover:bg-[#D9AA1E] text-stage-950 font-display font-bold text-sm sm:text-base px-8 py-4 rounded-xl shadow-2xl hover:shadow-reggae-gold/30 hover:scale-105 active:scale-95 transition-all"
             >
               <Calendar className="w-4 h-4" />
               <span>CONTRATAR A MR. CHANGO</span>
@@ -125,26 +123,26 @@ export default function HomePage() {
             <div className="p-3 bg-white dark:bg-stage-900/60 rounded-xl border border-stone-200 dark:border-stage-800 shadow-sm">
               <span className="block text-[10px] font-mono uppercase text-[#875D06] dark:text-reggae-gold font-bold">Fundación</span>
               <span className="text-base sm:text-lg font-bold text-stone-900 dark:text-reggae-ivory">2008</span>
-              <span className="block text-[11px] text-stone-600 dark:text-reggae-ivory/60 truncate">Playa del Carmen</span>
+              <span className="block text-xs text-stone-700 dark:text-reggae-ivory/85 truncate">Playa del Carmen</span>
             </div>
 
             <div className="p-3 bg-white dark:bg-stage-900/60 rounded-xl border border-stone-200 dark:border-stage-800 shadow-sm">
               <span className="block text-[10px] font-mono uppercase text-[#875D06] dark:text-reggae-gold font-bold">Formato</span>
               <span className="text-base sm:text-lg font-bold text-stone-900 dark:text-reggae-ivory">Banda Híbrida</span>
-              <span className="block text-[11px] text-stone-600 dark:text-reggae-ivory/60 truncate">MC & Frontman</span>
+              <span className="block text-xs text-stone-700 dark:text-reggae-ivory/85 truncate">MC & Frontman</span>
             </div>
 
             <div className="p-3 bg-white dark:bg-stage-900/60 rounded-xl border border-stone-200 dark:border-stage-800 shadow-sm">
               <span className="block text-[10px] font-mono uppercase text-[#875D06] dark:text-reggae-gold font-bold">Producción</span>
               <span className="text-base sm:text-lg font-bold text-stone-900 dark:text-reggae-ivory">Soul Talent</span>
-              <span className="block text-[11px] text-stone-600 dark:text-reggae-ivory/60 truncate">Riviera Maya</span>
+              <span className="block text-xs text-stone-700 dark:text-reggae-ivory/85 truncate">Riviera Maya</span>
             </div>
           </div>
 
           {/* Scroll Down Hint */}
           <a
             href="#manifiesto"
-            className="mt-10 text-reggae-ivory/50 hover:text-reggae-gold flex flex-col items-center gap-1 text-xs font-mono transition-colors"
+            className="mt-10 text-reggae-ivory/85 hover:text-reggae-gold flex flex-col items-center gap-1 text-sm font-sans transition-colors"
             aria-label="Desplazarse a la historia y propuesta de la banda"
           >
             <span>DESCUBRIR PROPUESTA</span>
@@ -208,7 +206,7 @@ export default function HomePage() {
           </div>
 
           {/* Sub-descripción */}
-          <p className="text-base sm:text-lg text-[#F1EADD]/70 max-w-xl leading-relaxed font-light">
+          <p className="text-base sm:text-lg text-[#F1EADD]/90 max-w-xl leading-relaxed font-light">
             Desde la selva caribeña de Quintana Roo, una propuesta que une la raíz
             del reggae con la realidad de México.
           </p>
@@ -242,13 +240,13 @@ export default function HomePage() {
 
         id="manifiesto"
         aria-label="Filosofía, valores y trayectoria de Mr. Chango"
-        className="py-24 px-4 sm:px-6 lg:px-8 border-t border-reggae-green-deep/60 relative"
+        className="py-24 px-4 sm:px-6 lg:px-8 border-t border-reggae-green-deep/60 relative bg-[#102017] section-grain"
       >
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Visual Column: Playa del Carmen portrait with authentic lighting */}
             <div className="lg:col-span-5 relative">
-              <div className="relative aspect-square rounded-2xl overflow-hidden border border-reggae-gold/30 shadow-2xl group">
+              <div className="relative aspect-square rounded-2xl overflow-hidden border border-reggae-gold/30 shadow-2xl group manifesto-image">
                 <Image
                   src="/playadelcarmen.jpeg"
                   alt="David Chango en Playa del Carmen con iluminación escénica"
@@ -283,7 +281,7 @@ export default function HomePage() {
               </div>
 
               {/* Principle Badge */}
-              <blockquote className="p-4 sm:p-5 rounded-xl bg-white dark:bg-stage-900 border-l-4 border-reggae-gold text-stone-800 dark:text-reggae-ivory text-base sm:text-lg font-light italic leading-relaxed shadow-sm">
+              <blockquote className="manifesto-quote p-4 sm:p-5 rounded-xl bg-white dark:bg-stage-900 border-l-4 border-reggae-gold text-stone-800 dark:text-reggae-ivory text-base sm:text-lg font-light italic leading-relaxed shadow-sm">
                 «{CHANGO_DATA.identity.artisticPrinciple}»
               </blockquote>
 
@@ -297,7 +295,7 @@ export default function HomePage() {
 
               {/* Triad: Mission, Vision, Values */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-stone-200 dark:border-stage-800">
-                <div className="p-4 rounded-xl bg-white dark:bg-stage-900/80 border border-stone-200 dark:border-stage-800 shadow-sm">
+                <div className="manifesto-value p-4 rounded-xl bg-white dark:bg-stage-900/80 border border-stone-200 dark:border-stage-800 shadow-sm">
                   <span className="text-xs font-mono font-bold uppercase text-[#875D06] dark:text-reggae-gold block mb-1">
                     Misión
                   </span>
@@ -306,7 +304,7 @@ export default function HomePage() {
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-white dark:bg-stage-900/80 border border-stone-200 dark:border-stage-800 shadow-sm">
+                <div className="manifesto-value p-4 rounded-xl bg-white dark:bg-stage-900/80 border border-stone-200 dark:border-stage-800 shadow-sm">
                   <span className="text-xs font-mono font-bold uppercase text-[#B84E18] dark:text-reggae-orange block mb-1">
                     Visión
                   </span>
@@ -315,7 +313,7 @@ export default function HomePage() {
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-white dark:bg-stage-900/80 border border-stone-200 dark:border-stage-800 shadow-sm">
+                <div className="manifesto-value p-4 rounded-xl bg-white dark:bg-stage-900/80 border border-stone-200 dark:border-stage-800 shadow-sm">
                   <span className="text-xs font-mono font-bold uppercase text-green-700 dark:text-green-400 block mb-1">
                     Valores
                   </span>
@@ -335,7 +333,7 @@ export default function HomePage() {
       <section
         id="banda"
         aria-label="Integrantes y equipo de Mr. Chango"
-        className="py-24 px-4 sm:px-6 lg:px-8 bg-stage-900/40 border-t border-reggae-green-deep/60 relative"
+        className="py-24 px-4 sm:px-6 lg:px-8 bg-[#21180f] border-t border-reggae-green-deep/60 relative section-grain"
       >
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -351,7 +349,7 @@ export default function HomePage() {
               <div className="flex-1 h-full bg-[#d62828]" />
             </div>
             <p className="text-xs sm:text-sm text-reggae-ivory/70 mt-2 leading-relaxed">
-              Integrantes y colaboradores documentados en el dossier oficial, con sus trayectorias y papeles escénicos confirmados.
+              Músicos y colaboradores que dan vida al sonido de Mr. Chango, en el escenario y detrás de él.
             </p>
           </div>
 
@@ -395,7 +393,7 @@ export default function HomePage() {
 
                   {/* Highlights Bullet List */}
                   <div className="mt-5 pt-4 border-t border-stone-200 dark:border-stage-800">
-                    <ul className="space-y-1.5 text-[11px] text-stone-600 dark:text-reggae-ivory/70 font-mono">
+                    <ul className="flex flex-col gap-2 text-xs text-stone-700 dark:text-[#E5E8E4] font-sans">
                       {member.highlights.slice(0, 2).map((h, i) => (
                         <li key={i} className="flex items-start gap-1.5">
                           <span className="text-[#875D06] dark:text-reggae-gold shrink-0 font-bold">▸</span>
@@ -410,7 +408,7 @@ export default function HomePage() {
           </div>
 
           <div className="mt-10 p-4 rounded-xl bg-stone-50 dark:bg-stage-950 border border-stone-200 dark:border-stage-800 text-center text-xs text-stone-600 dark:text-reggae-ivory/60 font-mono">
-            ** Nota oficial de producción: Los músicos ejecutores y los invitados secundarios pueden variar según disponibilidad técnica y aforo de cada plaza.
+            La formación puede ajustarse según el formato y las necesidades de cada escenario.
           </div>
         </div>
       </section>
@@ -420,8 +418,8 @@ export default function HomePage() {
       {/* ============================================================== */}
       <section
         id="musica"
-        aria-label="Catálogo musical y lanzamientos confirmados"
-        className="py-24 px-4 sm:px-6 lg:px-8 border-t border-reggae-green-deep/60 relative"
+        aria-label="Catálogo musical y lanzamientos"
+        className="py-24 px-4 sm:px-6 lg:px-8 bg-[#080A07] border-t border-reggae-green-deep/60 relative section-grain"
       >
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
@@ -438,7 +436,7 @@ export default function HomePage() {
                 <div className="flex-1 h-full bg-[#d62828]" />
               </div>
               <p className="text-xs sm:text-sm text-reggae-ivory/70 mt-1 max-w-xl">
-                Lanzamientos originales confirmados y clásicos que forman parte del repertorio en vivo en festivales.
+                Canciones propias y clásicos que se encuentran con el público en cada show.
               </p>
             </div>
 
@@ -479,9 +477,9 @@ export default function HomePage() {
                     alt={`Portada oficial de ${release.title}`}
                     fill
                     sizes="(max-width: 768px) 100vw, 300px"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="song-cover-image object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <div className="song-cover-overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                     <span className="p-3.5 rounded-full bg-reggae-gold text-stage-950 shadow-2xl scale-90 group-hover:scale-100 transition-transform">
                       <Play className="w-5 h-5 fill-current ml-0.5" />
                     </span>
@@ -497,16 +495,16 @@ export default function HomePage() {
                     <h3 className="text-xl font-display font-bold text-stone-900 dark:text-reggae-ivory group-hover:text-[#875D06] dark:group-hover:text-reggae-gold transition-colors">
                       {release.title}
                     </h3>
-                    <span className="text-[11px] font-mono text-[#875D06] dark:text-reggae-gold/90 font-medium block mt-0.5">
+                    <span className="text-sm font-sans text-[#875D06] dark:text-[#F2C230] font-medium block mt-0.5">
                       {release.confirmedOrigin}
                     </span>
-                    <p className="text-xs text-stone-600 dark:text-reggae-ivory/70 mt-2.5 leading-relaxed">
+                    <p className="text-sm text-stone-700 dark:text-[#E5E8E4] mt-2.5 leading-relaxed">
                       {release.description}
                     </p>
                   </div>
 
                   <div className="mt-5 pt-3 border-t border-stone-200 dark:border-stage-800 flex items-center justify-between text-xs font-mono">
-                    <span className="text-stone-500 dark:text-reggae-ivory/50 font-medium">{release.year}</span>
+                    <span className="text-stone-500 dark:text-reggae-ivory/75 font-medium">{release.year || release.type}</span>
                     <div className="flex items-center gap-2">
                       {release.spotifyUrl && (
                         <a
@@ -539,10 +537,34 @@ export default function HomePage() {
             ))}
           </div>
 
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <section aria-labelledby="upcoming-dates-title" className="rounded-2xl border border-stage-800 bg-[#102419] p-6 sm:p-8 section-grain">
+              <span className="text-xs font-mono uppercase tracking-widest text-[#F2C230]">En ruta</span>
+              <h3 id="upcoming-dates-title" className="mt-2 text-2xl font-display font-bold text-reggae-ivory">Próximas fechas</h3>
+              {CHANGO_DATA.upcomingDates.length ? (
+                <ul className="mt-5 flex flex-col gap-3">
+                  {CHANGO_DATA.upcomingDates.map((date) => <li key={`${date.date}-${date.venue}`} className="border-t border-white/15 pt-3 text-sm text-reggae-ivory">{date.date} · {date.venue} · {date.city}</li>)}
+                </ul>
+              ) : (
+                <p className="mt-3 text-sm leading-relaxed text-[#E5E8E4]">Próximamente: síguenos en <a className="font-semibold text-[#F2C230] underline underline-offset-4" href={CHANGO_DATA.socials.find((social) => social.name === "Instagram")?.url} target="_blank" rel="noopener noreferrer">Instagram</a>.</p>
+              )}
+            </section>
+            <section aria-labelledby="festival-credits-title" className="rounded-2xl border border-stage-800 bg-[#241A12] p-6 sm:p-8 section-grain">
+              <span className="text-xs font-mono uppercase tracking-widest text-[#F2C230]">En buena compañía</span>
+              <h3 id="festival-credits-title" className="mt-2 text-2xl font-display font-bold text-reggae-ivory">Han compartido escenario / Festivales</h3>
+              {CHANGO_DATA.festivalCredits.length ? <ul className="mt-5 flex flex-wrap gap-3">{CHANGO_DATA.festivalCredits.map((name) => <li key={name} className="rounded-lg border border-white/15 px-4 py-2 text-sm text-reggae-ivory">{name}</li>)}</ul> : <p className="mt-3 text-sm text-[#E5E8E4]">Espacio reservado para nombres y logotipos.</p>}
+            </section>
+          </div>
+
+          {CHANGO_DATA.fullShowYoutubeEmbedUrl && (
+            <div className="mt-12 overflow-hidden rounded-2xl border border-reggae-green-deep/80 bg-stage-900">
+              <div className="p-5 sm:p-7"><span className="text-xs font-mono uppercase tracking-widest text-[#F2C230]">En vivo</span><h3 className="mt-2 text-2xl font-display font-bold text-reggae-ivory">Show completo</h3></div>
+              <div className="relative aspect-video"><iframe src={CHANGO_DATA.fullShowYoutubeEmbedUrl} title="Show completo de Mr. Chango en YouTube" className="absolute inset-0 size-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen /></div>
+            </div>
+          )}
+
           <div className="mt-8 p-4 rounded-xl bg-stone-50 dark:bg-stage-900/60 border border-stone-200 dark:border-stage-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-600 dark:text-reggae-ivory/70">
-            <p>
-              * Canciones interpretadas con autorización artística de sus integrantes originales. No se replican letras completas protegidas.
-            </p>
+            <span className="sr-only">Más música de Mr. Chango</span>
             <a
               href={CHANGO_DATA.socials.find((s) => s.name === "SoundCloud")?.url}
               target="_blank"
@@ -561,7 +583,7 @@ export default function HomePage() {
       <section
         id="envivo"
         aria-label="Estructura del espectáculo en vivo y formatos de gira"
-        className="py-24 px-4 sm:px-6 lg:px-8 bg-stage-900/30 border-t border-reggae-green-deep/60 relative"
+        className="py-24 px-4 sm:px-6 lg:px-8 bg-[#102017] border-t border-reggae-green-deep/60 relative section-grain"
       >
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -577,16 +599,19 @@ export default function HomePage() {
           </div>
 
           {/* 5 Narrative Stages */}
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4 mb-16">
             {CHANGO_DATA.showFormat.narrativeStages.map((stage, idx) => (
-              <div
+              <button
                 key={stage.act}
-                className="bg-white dark:bg-stage-900 border border-stone-200 dark:border-stage-800 rounded-xl p-5 flex flex-col justify-between relative overflow-hidden shadow-sm"
+                type="button"
+                aria-pressed={activeShowStage === idx}
+                onClick={() => setActiveShowStage(idx)}
+                className={`show-stage group text-left bg-white dark:bg-stage-900 border rounded-xl p-5 flex flex-col justify-between relative overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-[#875D06]/50 dark:hover:border-reggae-gold/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-reggae-gold ${activeShowStage === idx ? "is-selected border-reggae-gold dark:border-reggae-gold" : "border-stone-200 dark:border-stage-800"}`}
               >
-                <div className="absolute top-2 right-2 text-3xl font-display font-bold text-stone-200 dark:text-stage-800/80 select-none">
+                <div className="absolute -right-2 -top-3 text-6xl font-display font-bold text-stone-100 dark:text-stage-800/60 select-none transition-transform duration-300 group-hover:scale-110">
                   0{idx + 1}
                 </div>
-                <div>
+                <div className="relative">
                   <span className="text-xs font-mono uppercase tracking-widest text-[#875D06] dark:text-reggae-gold font-bold">
                     {stage.act}
                   </span>
@@ -597,9 +622,13 @@ export default function HomePage() {
                     {stage.description}
                   </p>
                 </div>
-              </div>
+                <div className={`absolute bottom-0 left-0 h-1 bg-[#875D06] dark:bg-reggae-gold transition-all duration-300 ${activeShowStage === idx ? "w-full" : "w-0 group-hover:w-full"}`} />
+              </button>
             ))}
           </div>
+          <p className="sr-only" aria-live="polite">
+            Acto seleccionado: {CHANGO_DATA.showFormat.narrativeStages[activeShowStage].act}, {CHANGO_DATA.showFormat.narrativeStages[activeShowStage].title}
+          </p>
 
           {/* Live Video Teaser Showcase */}
           <div className="mb-16 bg-white dark:bg-stage-900 border border-stone-200 dark:border-reggae-green-deep/80 rounded-2xl p-6 sm:p-8 overflow-hidden shadow-xl">
@@ -617,7 +646,7 @@ export default function HomePage() {
                     <button
                       type="button"
                       onClick={() => openVideoLightbox(CHANGO_DATA.videos[0])}
-                      className="p-5 rounded-full bg-gradient-to-r from-reggae-gold to-reggae-orange text-stage-950 shadow-2xl hover:scale-110 active:scale-95 transition-all focus:outline-none focus-visible:ring-4 focus-visible:ring-reggae-gold"
+                      className="p-5 rounded-full bg-[#F2C230] text-stage-950 shadow-2xl hover:scale-110 active:scale-95 transition-all focus:outline-none focus-visible:ring-4 focus-visible:ring-reggae-gold"
                       aria-label="Ver video en vivo de concierto en festival"
                     >
                       <Play className="w-8 h-8 fill-current ml-1" />
@@ -639,7 +668,7 @@ export default function HomePage() {
                 <p className="text-xs sm:text-sm text-stone-700 dark:text-reggae-ivory/80 leading-relaxed">
                   Pantalla LED gigante con visuales sincronizados, interacción continua con el público, dinámicas en vivo y la fusión vibrante entre New Roots, Dancehall y Rap Mexicano.
                 </p>
-                <div className="flex flex-col gap-2 pt-2 text-xs font-mono text-stone-700 dark:text-reggae-ivory/70">
+                <div className="flex flex-col gap-2 pt-2 text-sm font-sans text-stone-700 dark:text-[#E5E8E4]">
                   <div className="flex items-center gap-2">
                     <span className="text-[#875D06] dark:text-reggae-gold font-bold">✔</span>
                     <span>Repertorio propio + clásicos de Ganja y Bob Marley</span>
@@ -657,7 +686,7 @@ export default function HomePage() {
                 <div className="pt-2">
                   <a
                     href="#contacto"
-                    className="inline-flex items-center gap-2 bg-gradient-to-r from-reggae-gold to-reggae-orange hover:from-reggae-gold-light hover:to-reggae-orange-warm text-stage-950 font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider shadow-md transition-all"
+                    className="inline-flex items-center gap-2 bg-[#F2C230] hover:bg-[#D9AA1E] text-stage-950 font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider shadow-md transition-colors"
                   >
                     <span>Cotizar este Show</span>
                     <ArrowRight className="w-4 h-4" />
@@ -670,9 +699,12 @@ export default function HomePage() {
           {/* Formats Grid: Banda Híbrida vs MC Frontman */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {CHANGO_DATA.showFormat.formats.map((fmt, i) => (
-              <div
+              <button
                 key={fmt.name}
-                className="bg-white dark:bg-stage-900 border border-stone-200 dark:border-stage-800 rounded-2xl p-6 sm:p-8 flex flex-col justify-between shadow-md"
+                type="button"
+                aria-pressed={activeShowFormat === i}
+                onClick={() => setActiveShowFormat(i)}
+                className={`show-format group text-left bg-white dark:bg-stage-900 border rounded-2xl p-6 sm:p-8 flex flex-col justify-between shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-reggae-gold ${activeShowFormat === i ? "is-selected border-reggae-gold dark:border-reggae-gold" : "border-stone-200 dark:border-stage-800"}`}
               >
                 <div>
                   <span className="text-xs font-mono uppercase tracking-widest text-[#875D06] dark:text-reggae-gold font-bold">
@@ -686,13 +718,17 @@ export default function HomePage() {
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-stone-200 dark:border-stage-800 text-xs font-mono text-stone-600 dark:text-reggae-ivory/60">
+                <div className="mt-6 pt-4 border-t border-stone-200 dark:border-stage-800 text-sm font-sans text-stone-700 dark:text-[#E5E8E4]">
                   <strong className="text-stone-900 dark:text-reggae-ivory/90 font-bold block mb-1">
                     Requerimiento Técnico:
                   </strong>
                   <span>{fmt.requirements}</span>
+                  <span className={`mt-4 inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#875D06] dark:text-reggae-gold transition-opacity ${activeShowFormat === i ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}>
+                    <span className="size-2 rounded-full bg-current" />
+                    Formato seleccionado
+                  </span>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -704,13 +740,13 @@ export default function HomePage() {
       <section
         id="galeria"
         aria-label="Galería visual fotográfica y videoclips de Mr. Chango"
-        className="py-24 px-4 sm:px-6 lg:px-8 border-t border-reggae-green-deep/60 relative"
+        className="py-24 px-4 sm:px-6 lg:px-8 bg-[#21180F] border-t border-reggae-green-deep/60 relative section-grain"
       >
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
             <div>
               <span className="text-xs font-mono uppercase tracking-widest text-[#875D06] dark:text-reggae-gold font-bold">
-                Archivo Audiovisual Verificado
+                Noches que se quedan
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-stone-900 dark:text-reggae-ivory mt-2">
                 Galería de Conciertos & Sesiones
@@ -726,7 +762,7 @@ export default function HomePage() {
                   onClick={() => setGalleryCategory(cat)}
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-mono uppercase tracking-wider transition-all ${
                     galleryCategory === cat
-                      ? "bg-gradient-to-r from-reggae-gold to-reggae-orange text-stage-950 font-bold shadow-md"
+                      ? "bg-[#F2C230] text-stage-950 font-bold shadow-md"
                       : "bg-white dark:bg-stage-900 text-stone-700 dark:text-reggae-ivory/70 hover:text-stone-900 dark:hover:text-reggae-ivory hover:bg-stone-50 dark:hover:bg-stage-850 border border-stone-200 dark:border-stage-800 shadow-sm"
                   }`}
                 >
@@ -796,7 +832,7 @@ export default function HomePage() {
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                    <span className="p-4 rounded-full bg-gradient-to-r from-reggae-gold to-reggae-orange text-stage-950 shadow-2xl scale-90 group-hover:scale-105 transition-transform">
+                    <span className="p-4 rounded-full bg-[#F2C230] text-stage-950 shadow-2xl scale-90 group-hover:scale-105 transition-transform">
                       <Play className="w-6 h-6 fill-current ml-0.5" />
                     </span>
                   </div>
@@ -821,7 +857,7 @@ export default function HomePage() {
       <section
         id="rider"
         aria-label="Rider técnico y distribución de escenario"
-        className="py-24 px-4 sm:px-6 lg:px-8 bg-stage-900/30 border-t border-reggae-green-deep/60 relative"
+        className="py-24 px-4 sm:px-6 lg:px-8 bg-[#102017] border-t border-reggae-green-deep/60 relative section-grain"
       >
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16">

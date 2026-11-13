@@ -81,8 +81,8 @@ export const StagePlotViewer = () => {
               </div>
 
               <a
-                href="/Proyecto Mr. Chango.pdf"
-                download="Proyecto Mr. Chango.pdf"
+              href="/Proyecto Mr. Chango.pdf"
+              download="mr-chango-dossier.pdf"
                 className="inline-flex items-center gap-2 bg-stone-100 hover:bg-stone-200 text-[#875D06] border border-[#DAB44A]/50 dark:bg-stage-800 dark:hover:bg-stage-700 dark:text-reggae-gold dark:border-reggae-gold/30 px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider w-fit shadow-sm transition-all"
               >
                 <FileDown className="w-4 h-4" />
@@ -138,10 +138,7 @@ export const StagePlotViewer = () => {
             {/* Transparent Note on Discrepancies */}
             <div className="p-4 rounded-xl bg-amber-50/80 dark:bg-stage-850/80 border border-amber-200 dark:border-reggae-gold/20 flex items-start gap-3 text-xs text-stone-700 dark:text-reggae-ivory/80">
               <Info className="w-5 h-5 text-[#875D06] dark:text-reggae-gold shrink-0 mt-0.5" />
-              <div>
-                <strong className="text-[#875D06] dark:text-reggae-gold font-bold">Verificación con Producción:</strong>{" "}
-                {technicalRider.ledScreenNotice}
-              </div>
+              <div>{technicalRider.ledScreenNotice}</div>
             </div>
           </div>
         )}
@@ -178,7 +175,7 @@ export const StagePlotViewer = () => {
                       <th className="py-3 px-4">Observaciones</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-stone-200 dark:divide-stage-800 bg-white dark:bg-stage-850/40 font-mono text-xs sm:text-sm">
+                  <tbody className="divide-y divide-stone-200 dark:divide-stage-800 bg-white dark:bg-stage-850/40 font-sans text-xs sm:text-sm">
                     {technicalRider.outputChannels.map((ch) => (
                       <tr key={ch.ch} className="hover:bg-stone-50 dark:hover:bg-stage-800/50 transition-colors">
                         <td className="py-3 px-4 font-bold text-[#875D06] dark:text-reggae-gold">{ch.ch}</td>
