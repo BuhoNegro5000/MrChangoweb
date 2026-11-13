@@ -11,7 +11,6 @@ import {
   Volume2,
   VolumeX,
   Disc3,
-  Maximize2,
   Minimize2,
   Music,
   ExternalLink,
@@ -44,11 +43,14 @@ export const AudioPlayerBar = () => {
 
   const currentTrack: AudioTrack = tracks[currentTrackIndex];
 
-  // Inicializar con minimizado en mobile
   useEffect(() => {
-    if (typeof window !== "undefined" && window.innerWidth < 640) {
-      setIsMinimized(true);
-    }
+    const collapseOnScroll = () => {
+      if (window.scrollY > 160) setIsMinimized(true);
+      else if (window.innerWidth >= 640) setIsMinimized(false);
+    };
+    setIsMinimized(window.innerWidth < 640);
+    window.addEventListener("scroll", collapseOnScroll, { passive: true });
+    return () => window.removeEventListener("scroll", collapseOnScroll);
   }, []);
 
   // Crear / actualizar el elemento <audio>
@@ -183,15 +185,12 @@ export const AudioPlayerBar = () => {
           <button
             type="button"
             onClick={() => setIsMinimized(false)}
-            className="audio-player-pill flex items-center gap-2 px-3.5 py-2 bg-[#102419] border border-[#DAB44A]/40 rounded-xl hover:bg-[#102419]/80 text-[#DAB44A] text-xs font-bold uppercase tracking-wider shadow-lg"
-            title="Expandir reproductor musical"
-            aria-label="Expandir reproductor de Mr. Chango"
+            className="audio-player-pill flex items-center justify-center size-12 bg-[#102419] border border-[#DAB44A]/50 rounded-full hover:bg-[#102419]/80 text-[#DAB44A] shadow-lg"
+            title={`Reproducir ${currentTrack.title}`}
+            aria-label={`Expandir reproductor: ${currentTrack.title}`}
           >
             <Disc3 className={`w-4 h-4 ${isPlaying ? "animate-spin" : ""}`} />
-            <span>
-              {isPlaying ? currentTrack.title : "Mr. Chango — Música"}
-            </span>
-            <Maximize2 className="w-3.5 h-3.5 ml-1 text-[#F1EADD]/60" />
+            <span className="sr-only">{isPlaying ? currentTrack.title : "Mr. Chango — Música"}</span>
           </button>
         ) : (
           /* ── Reproductor expandido ── */
@@ -200,11 +199,11 @@ export const AudioPlayerBar = () => {
             <div className="audio-player-header flex items-center justify-between pb-2 border-b border-[#102419] text-xs">
               <div className="flex items-center gap-2">
                 <Music className="w-3.5 h-3.5 text-[#DAB44A]" />
-                <span className="font-mono text-[11px] text-[#DAB44A] font-bold tracking-widest uppercase">
-                  {isLoading
-                    ? "Cargando…"
-                    : `Pista ${currentTrackIndex + 1} / ${tracks.length}`}
-                </span>
+                {tracks.length > 1 && (
+                  <span className="font-mono text-[11px] text-[#DAB44A] font-bold tracking-widest uppercase">
+                    {isLoading ? "Cargando…" : `Pista ${currentTrackIndex + 1} / ${tracks.length}`}
+                  </span>
+                )}
               </div>
               <button
                 type="button"
@@ -287,20 +286,22 @@ export const AudioPlayerBar = () => {
             {/* Controles principales */}
             <div className="flex items-center justify-between pt-0.5">
               <div className="flex items-center gap-1">
-                <button
-                  type="button"
-                  onClick={handlePrev}
-                  className="audio-player-btn p-1.5 text-[#F1EADD]/70 hover:text-[#DAB44A] rounded hover:bg-[#102419] transition-colors"
-                  aria-label="Pista anterior"
-                >
-                  <SkipBack className="w-4 h-4" />
-                </button>
+                {tracks.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={handlePrev}
+                    className="audio-player-btn p-1.5 text-[#F1EADD]/70 hover:text-[#DAB44A] rounded hover:bg-[#102419] transition-colors"
+                    aria-label="Pista anterior"
+                  >
+                    <SkipBack className="w-4 h-4" />
+                  </button>
+                )}
 
                 <button
                   type="button"
                   onClick={togglePlay}
                   disabled={isLoading}
-                  className="p-2.5 rounded-full bg-gradient-to-r from-[#DAB44A] to-[#C96832] text-stage-950 font-bold hover:scale-105 active:scale-95 transition-transform shadow-lg disabled:opacity-50"
+                  className="p-2.5 rounded-full bg-[#F2C230] hover:bg-[#D9AA1E] text-stage-950 font-bold hover:scale-105 active:scale-95 transition-transform shadow-lg disabled:opacity-50"
                   aria-label={isPlaying ? "Pausar" : "Reproducir"}
                 >
                   {isPlaying ? (
@@ -310,14 +311,16 @@ export const AudioPlayerBar = () => {
                   )}
                 </button>
 
-                <button
-                  type="button"
-                  onClick={handleNext}
-                  className="audio-player-btn p-1.5 text-[#F1EADD]/70 hover:text-[#DAB44A] rounded hover:bg-[#102419] transition-colors"
-                  aria-label="Siguiente pista"
-                >
-                  <SkipForward className="w-4 h-4" />
-                </button>
+                {tracks.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={handleNext}
+                    className="audio-player-btn p-1.5 text-[#F1EADD]/70 hover:text-[#DAB44A] rounded hover:bg-[#102419] transition-colors"
+                    aria-label="Siguiente pista"
+                  >
+                    <SkipForward className="w-4 h-4" />
+                  </button>
+                )}
               </div>
 
               {/* Volumen */}
@@ -349,7 +352,7 @@ export const AudioPlayerBar = () => {
 
             {/* Streaming Links (Spotify & YouTube) */}
             <div className="audio-player-footer flex items-center justify-between pt-1 border-t border-[#102419]/80">
-              <span className="audio-player-origin text-[10px] text-[#F1EADD]/40 font-mono font-medium truncate max-w-[120px]">
+              <span className="audio-player-origin text-xs text-[#F1EADD]/75 font-sans font-medium truncate max-w-[120px]">
                 {currentTrack.confirmedOrigin}
               </span>
               <div className="flex items-center gap-1.5 shrink-0">

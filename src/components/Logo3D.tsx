@@ -24,13 +24,14 @@ export default function Logo3D({ className = "", size = 380 }: Logo3DProps) {
   const [mounted, setMounted] = useState(false);
   const [isInteracting, setIsInteracting] = useState(false);
   const [webglAvailable, setWebglAvailable] = useState(true);
+  const [logoTextureLoaded, setLogoTextureLoaded] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   useEffect(() => {
-    if (!mounted) return;
+    if (!mounted || !webglAvailable) return;
     const mount = mountRef.current;
     if (!mount) return;
 
@@ -52,6 +53,9 @@ export default function Logo3D({ className = "", size = 380 }: Logo3DProps) {
     renderer.domElement.style.height = "100%";
     renderer.domElement.style.maxWidth = "100%";
     renderer.domElement.style.display = "block";
+    renderer.domElement.style.position = "absolute";
+    renderer.domElement.style.inset = "0";
+    renderer.domElement.style.zIndex = "0";
     renderer.setClearColor(0x000000, 0); // Transparente
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.3;
@@ -93,16 +97,27 @@ export default function Logo3D({ className = "", size = 380 }: Logo3DProps) {
     // ── 5. CARGA DE TEXTURAS PBR MASTER ──────────────────────────
     const textureLoader = new THREE.TextureLoader();
 
-    const logoTexture = textureLoader.load("/optimized/logo_cutout_clean.png", () => {
-      logoTexture.colorSpace = THREE.SRGBColorSpace;
-      logoTexture.generateMipmaps = true;
-      logoTexture.minFilter = THREE.LinearMipmapLinearFilter;
-    });
+    const logoTexture = textureLoader.load(
+      "/optimized/logo_cutout_clean.png",
+      (texture) => {
+        texture.colorSpace = THREE.SRGBColorSpace;
+        texture.generateMipmaps = true;
+        texture.minFilter = THREE.LinearMipmapLinearFilter;
+        setLogoTextureLoaded(true);
+      },
+      undefined,
+      () => setWebglAvailable(false),
+    );
 
-    const normalMap = textureLoader.load("/optimized/logo_cutout_normal.png", () => {
-      normalMap.generateMipmaps = true;
-      normalMap.minFilter = THREE.LinearMipmapLinearFilter;
-    });
+    const normalMap = textureLoader.load(
+      "/optimized/logo_cutout_normal.png",
+      (texture) => {
+        texture.generateMipmaps = true;
+        texture.minFilter = THREE.LinearMipmapLinearFilter;
+      },
+      undefined,
+      () => setWebglAvailable(false),
+    );
 
     // ── 6. CONSTRUCCIÓN DE GEOMETRÍA VOLUMÉTRICA MULTICAPA 3D ────
     // Dimensiones de la imagen: 630 x 463
@@ -360,7 +375,7 @@ export default function Logo3D({ className = "", size = 380 }: Logo3DProps) {
         mount.removeChild(domEl);
       }
     };
-  }, [mounted, size]);
+  }, [mounted, size, webglAvailable]);
 
   if (!mounted || !webglAvailable) {
     return (
@@ -370,7 +385,7 @@ export default function Logo3D({ className = "", size = 380 }: Logo3DProps) {
       >
         <div className="relative w-full h-full flex items-center justify-center">
           <Image
-            src="/logonegro.jpeg"
+            src="/optimized/logo_cutout_clean.png"
             alt="Mr. Chango Reggae Mexicano"
             fill
             sizes="(max-width: 768px) 280px, 380px"
@@ -387,13 +402,22 @@ export default function Logo3D({ className = "", size = 380 }: Logo3DProps) {
       <div
         ref={mountRef}
         style={{ width: `min(${size}px, calc(100vw - 2rem))`, height: `min(${size}px, calc(100vw - 2rem))`, maxWidth: "100%", aspectRatio: "1" }}
-        className={`relative transition-transform duration-200 ${
+        className={`relative overflow-hidden transition-transform duration-200 ${
           isInteracting ? "cursor-grabbing scale-[1.02]" : "cursor-grab"
         }`}
         role="img"
         aria-label="Modelo 3D volumétrico oficial de Mr. Chango Reggae Mexicano"
         title="Arrastra con el ratón o desliza con el dedo para rotar el logo en 3D"
-      />
+      >
+        <Image
+          src="/optimized/logo_cutout_clean.png"
+          alt=""
+          fill
+          sizes="(max-width: 768px) 280px, 380px"
+          priority
+          className={`pointer-events-none z-10 object-contain transition-opacity duration-300 ${logoTextureLoaded ? "opacity-0" : "opacity-100"}`}
+        />
+      </div>
     </div>
   );
 }

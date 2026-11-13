@@ -19,8 +19,13 @@ const oswald = Oswald({
   display: "swap",
 });
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://mrchango.com");
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mrchango.com"),
+  metadataBase: new URL(SITE_URL),
+  alternates: { canonical: SITE_URL },
   title: "Mr. Chango | Reggae Mexicano desde Playa del Carmen",
   description:
     "Sitio web oficial de Mr. Chango Reggae Mexicano. Roots culture, rap y vibración caribeña desde Playa del Carmen, Quintana Roo. 18 años de trayectoria.",
@@ -41,19 +46,19 @@ export const metadata: Metadata = {
     title: "Mr. Chango | Reggae Mexicano desde Playa del Carmen",
     description:
       "Siente lo que escuchas y escucha lo que sientes. Música original, roots culture y energía escénica caribeña.",
-    url: "https://mrchango.com",
+    url: SITE_URL,
     siteName: "Mr. Chango Oficial",
     locale: "es_MX",
     type: "website",
     images: [
       {
-        url: "/playadelcarmen.jpeg",
+        url: new URL("/playadelcarmen.jpeg", SITE_URL).toString(),
         width: 1600,
         height: 1600,
         alt: "Mr. Chango en Playa del Carmen",
       },
       {
-        url: "/logonegro.jpeg",
+        url: new URL("/logonegro.jpeg", SITE_URL).toString(),
         width: 1264,
         height: 974,
         alt: "Logotipo oficial Mr. Chango",
@@ -64,7 +69,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Mr. Chango | Reggae Mexicano",
     description: "La música es el puente, la meta siempre será el mensaje.",
-    images: ["/playadelcarmen.jpeg"],
+    images: [new URL("/playadelcarmen.jpeg", SITE_URL).toString()],
   },
   robots: {
     index: true,
@@ -82,6 +87,7 @@ export default function RootLayout({
     "@type": "MusicGroup",
     name: CHANGO_DATA.identity.name,
     alternateName: CHANGO_DATA.identity.shortName,
+    url: SITE_URL,
     description: CHANGO_DATA.identity.manifesto,
     foundingLocation: {
       "@type": "Place",
