@@ -32,6 +32,7 @@ export const RastaCursor = () => {
       const targetTilt = Math.max(-12, Math.min(12, dx * 0.8));
       setTilt(targetTilt);
 
+      document.documentElement.classList.add("rasta-cursor-active");
       setPos({ x: e.clientX, y: e.clientY });
       if (!isVisible) setIsVisible(true);
 
@@ -46,7 +47,10 @@ export const RastaCursor = () => {
 
     const onMouseDown = () => setIsClicking(true);
     const onMouseUp = () => setIsClicking(false);
-    const onMouseLeave = () => setIsVisible(false);
+    const onMouseLeave = () => {
+      document.documentElement.classList.remove("rasta-cursor-active");
+      setIsVisible(false);
+    };
     const onMouseEnter = () => setIsVisible(true);
 
     window.addEventListener("mousemove", onMouseMove, { passive: true });
@@ -61,6 +65,7 @@ export const RastaCursor = () => {
       window.removeEventListener("mouseup", onMouseUp);
       document.removeEventListener("mouseleave", onMouseLeave);
       document.removeEventListener("mouseenter", onMouseEnter);
+      document.documentElement.classList.remove("rasta-cursor-active");
     };
   }, [isVisible]);
 

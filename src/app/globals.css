@@ -91,9 +91,19 @@ h1, h2, h3, .font-display {
   transform-origin: 3px 12px;
 }
 
-/* Ocultar el cursor estándar del sistema en pantallas de escritorio con ratón para lucir el cursor Rasta personalizado */
+/* Oculta el cursor nativo solo después de que la bandera Rasta ya está activa. */
 @media (pointer: fine) {
-  body, a, button, input, select, textarea, [role="button"], label, .cursor-pointer, .cursor-grab {
+  html.rasta-cursor-active,
+  html.rasta-cursor-active body,
+  html.rasta-cursor-active a,
+  html.rasta-cursor-active button,
+  html.rasta-cursor-active input,
+  html.rasta-cursor-active select,
+  html.rasta-cursor-active textarea,
+  html.rasta-cursor-active [role="button"],
+  html.rasta-cursor-active label,
+  html.rasta-cursor-active .cursor-pointer,
+  html.rasta-cursor-active .cursor-grab {
     cursor: none !important;
   }
 }
