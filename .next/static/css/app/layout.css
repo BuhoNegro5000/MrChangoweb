@@ -739,6 +739,9 @@ video {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
 }
+.mb-0 {
+  margin-bottom: 0px;
+}
 .mb-1 {
   margin-bottom: 0.25rem;
 }
@@ -807,9 +810,6 @@ video {
 }
 .mt-8 {
   margin-top: 2rem;
-}
-.mb-0 {
-  margin-bottom: 0px;
 }
 .line-clamp-2 {
   overflow: hidden;
@@ -1804,10 +1804,6 @@ video {
   font-size: 1.875rem;
   line-height: 2.25rem;
 }
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
 .text-6xl {
   font-size: 3.75rem;
   line-height: 1;
@@ -2311,9 +2307,19 @@ h1, h2, h3, .font-display {
   transform-origin: 3px 12px;
 }
 
-/* Ocultar el cursor estándar del sistema en pantallas de escritorio con ratón para lucir el cursor Rasta personalizado */
+/* Oculta el cursor nativo solo después de que la bandera Rasta ya está activa. */
 @media (pointer: fine) {
-  body, a, button, input, select, textarea, [role="button"], label, .cursor-pointer, .cursor-grab {
+  html.rasta-cursor-active,
+  html.rasta-cursor-active body,
+  html.rasta-cursor-active a,
+  html.rasta-cursor-active button,
+  html.rasta-cursor-active input,
+  html.rasta-cursor-active select,
+  html.rasta-cursor-active textarea,
+  html.rasta-cursor-active [role="button"],
+  html.rasta-cursor-active label,
+  html.rasta-cursor-active .cursor-pointer,
+  html.rasta-cursor-active .cursor-grab {
     cursor: none !important;
   }
 }
@@ -3437,10 +3443,6 @@ html.light .song-cover-image {
     margin-top: 2.5rem;
   }
 
-  .sm\:mt-6 {
-    margin-top: 1.5rem;
-  }
-
   .sm\:mt-4 {
     margin-top: 1rem;
   }
@@ -3569,11 +3571,6 @@ html.light .song-cover-image {
     line-height: 1;
   }
 
-  .sm\:text-6xl {
-    font-size: 3.75rem;
-    line-height: 1;
-  }
-
   .sm\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
@@ -3610,10 +3607,6 @@ html.light .song-cover-image {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .md\:grid-cols-5 {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-
   .md\:flex-row {
     flex-direction: row;
   }
@@ -3628,11 +3621,6 @@ html.light .song-cover-image {
 
   .md\:text-6xl {
     font-size: 3.75rem;
-    line-height: 1;
-  }
-
-  .md\:text-7xl {
-    font-size: 4.5rem;
     line-height: 1;
   }
 }
@@ -3698,11 +3686,6 @@ html.light .song-cover-image {
 
   .lg\:text-5xl {
     font-size: 3rem;
-    line-height: 1;
-  }
-
-  .lg\:text-8xl {
-    font-size: 6rem;
     line-height: 1;
   }
 }
