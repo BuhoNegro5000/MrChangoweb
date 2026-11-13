@@ -71,7 +71,7 @@ export default function HomePage() {
             muted
             playsInline
             poster="/video_thumbs/bandatocando3_poster.jpg"
-            className="w-full h-full object-cover object-center opacity-35 scale-105 transform motion-safe:animate-pulse-slow"
+            className="hero-video w-full h-full object-cover object-center opacity-35 scale-105 transform motion-safe:animate-pulse-slow"
           >
             <source src="/bandatocando3.mp4" type="video/mp4" />
           </video>
@@ -90,7 +90,7 @@ export default function HomePage() {
             <Logo3D size={440} className="w-full" />
           </div>
 
-          <p className="mt-2 sm:mt-4 text-lg sm:text-2xl font-light text-stone-700 dark:text-reggae-ivory/90 max-w-2xl leading-relaxed">
+          <p className="mt-2 sm:mt-4 text-lg sm:text-2xl font-normal text-stone-900 dark:font-light dark:text-reggae-ivory/90 max-w-2xl leading-relaxed">
             {CHANGO_DATA.identity.tagline}
           </p>
 
@@ -142,7 +142,7 @@ export default function HomePage() {
           {/* Scroll Down Hint */}
           <a
             href="#manifiesto"
-            className="mt-10 text-reggae-ivory/85 hover:text-reggae-gold flex flex-col items-center gap-1 text-sm font-sans transition-colors"
+            className="mt-10 text-stone-700 hover:text-[#875D06] dark:text-reggae-ivory/85 dark:hover:text-reggae-gold flex flex-col items-center gap-1 text-sm font-sans transition-colors"
             aria-label="Desplazarse a la historia y propuesta de la banda"
           >
             <span>DESCUBRIR PROPUESTA</span>
@@ -540,10 +540,10 @@ export default function HomePage() {
           <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-6">
             <section aria-labelledby="upcoming-dates-title" className="rounded-2xl border border-stage-800 bg-[#102419] p-6 sm:p-8 section-grain">
               <span className="text-xs font-mono uppercase tracking-widest text-[#F2C230]">En ruta</span>
-              <h3 id="upcoming-dates-title" className="mt-2 text-2xl font-display font-bold text-reggae-ivory">Próximas fechas</h3>
+              <h3 id="upcoming-dates-title" className="mt-2 text-2xl font-display font-bold text-reggae-ivory keep-white-on-media">Próximas fechas</h3>
               {CHANGO_DATA.upcomingDates.length ? (
                 <ul className="mt-5 flex flex-col gap-3">
-                  {CHANGO_DATA.upcomingDates.map((date) => <li key={`${date.date}-${date.venue}`} className="border-t border-white/15 pt-3 text-sm text-reggae-ivory">{date.date} · {date.venue} · {date.city}</li>)}
+                  {CHANGO_DATA.upcomingDates.map((date) => <li key={`${date.date}-${date.venue}`} className="border-t border-white/15 pt-3 text-sm text-reggae-ivory keep-white-on-media">{date.date} · {date.venue} · {date.city}</li>)}
                 </ul>
               ) : (
                 <p className="mt-3 text-sm leading-relaxed text-[#E5E8E4]">Próximamente: síguenos en <a className="font-semibold text-[#F2C230] underline underline-offset-4" href={CHANGO_DATA.socials.find((social) => social.name === "Instagram")?.url} target="_blank" rel="noopener noreferrer">Instagram</a>.</p>
@@ -551,8 +551,8 @@ export default function HomePage() {
             </section>
             <section aria-labelledby="festival-credits-title" className="rounded-2xl border border-stage-800 bg-[#241A12] p-6 sm:p-8 section-grain">
               <span className="text-xs font-mono uppercase tracking-widest text-[#F2C230]">En buena compañía</span>
-              <h3 id="festival-credits-title" className="mt-2 text-2xl font-display font-bold text-reggae-ivory">Han compartido escenario / Festivales</h3>
-              {CHANGO_DATA.festivalCredits.length ? <ul className="mt-5 flex flex-wrap gap-3">{CHANGO_DATA.festivalCredits.map((name) => <li key={name} className="rounded-lg border border-white/15 px-4 py-2 text-sm text-reggae-ivory">{name}</li>)}</ul> : <p className="mt-3 text-sm text-[#E5E8E4]">Espacio reservado para nombres y logotipos.</p>}
+              <h3 id="festival-credits-title" className="mt-2 text-2xl font-display font-bold text-reggae-ivory keep-white-on-media">Han compartido escenario / Festivales</h3>
+              {CHANGO_DATA.festivalCredits.length ? <ul className="mt-5 flex flex-wrap gap-3">{CHANGO_DATA.festivalCredits.map((name) => <li key={name} className="rounded-lg border border-white/15 px-4 py-2 text-sm text-reggae-ivory keep-white-on-media">{name}</li>)}</ul> : <p className="mt-3 text-sm text-[#E5E8E4]">Espacio reservado para nombres y logotipos.</p>}
             </section>
           </div>
 

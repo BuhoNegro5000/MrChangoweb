@@ -111,7 +111,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="es" className={`dark ${inter.variable} ${oswald.variable}`}>
+    <html lang="es" suppressHydrationWarning className={`dark ${inter.variable} ${oswald.variable}`}>
       <head>
         <script
           type="application/ld+json"

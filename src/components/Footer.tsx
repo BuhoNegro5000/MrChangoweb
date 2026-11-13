@@ -46,13 +46,13 @@ export const Footer = () => {
           {/* Col 1: Identity & Motto */}
           <div className="lg:col-span-4 flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <div className="relative w-14 h-12 overflow-hidden rounded bg-white dark:bg-stage-900 border border-stone-200 dark:border-reggae-gold/30 p-1 shadow-sm">
+              <div className="relative w-16 h-12">
                 <Image
-                  src="/logonegro.jpeg"
+                  src="/optimized/logo_header.png"
                   alt="Logotipo Mr. Chango"
                   fill
                   sizes="64px"
-                  className="object-contain"
+                  className="object-contain drop-shadow-[0_0_1px_rgba(0,0,0,0.7)] dark:drop-shadow-none"
                 />
               </div>
               <div>
